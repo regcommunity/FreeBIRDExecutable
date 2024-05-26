@@ -380,7 +380,10 @@ op PRJCT_FNNC_LN_domain  PRJCT_FNNC_LN()
 @dep (dep1="BIRD_CLLTRL_ELDM.CLLTRL_OBTND_TYP")
 op TYP_PRTCTN_domain  TYP_CLLTRL_GRNT_RCVD() 
 {
-	BIRD_CLLTRL_ELDM.CLLTRL_OBTND_TYP
+	if (BIRD_CLLTRL_ELDM !== null)
+		BIRD_CLLTRL_ELDM.CLLTRL_OBTND_TYP
+	else
+		sdd_domains.TYP_PRTCTN_domain.NOT_OBTAINED_COLLATERAL
 }
 @dep (dep1="BIRD_BLNC_SHT_RCGNSD_FNNCNL_ASST_INSTRMNT_ELDM.DT_RFRNC")
 op Date  DT_RFRNC() 
@@ -408,19 +411,51 @@ class Loans_and_advances_Table {
 				// remove any duplicates in these refers statements
 				refers BIRD_PRTY_ELDM_Table bIRD_PRTY_ELDM_Table
 				// remove any duplicates in these refers statements
-
-				refers BIRD_CLLTRL_ELDM_Table bIRD_CLLTRL_ELDM_Table
+				refers BIRD_OTHR_LN_ELDM_Table bIRD_OTHR_LN_ELDM_Table
 				// remove any duplicates in these refers statements
 
 			 	contains  Loans_and_advances []   Loans_and_advancess	
 			 	op Loans_and_advances []   calc_Loans_and_advancess() 
 				{
 				 	var items = new org.eclipse.emf.common.util.BasicEList<Loans_and_advances>()
-		 		 	//Join up any refered tables that you need to join
-		 		 	//loop through the main table
-		 		 	//create an item using var newItem = F_05_01_REF_OutputItem_LogicFactory.eINSTANCE.createLoans_and_advances
-		 		 	//set any references you want to on the new Item so that it can refer to themin operations
-		 		 	return items
+		 		 	for( BIRD_OTHR_LN_ELDM other_loan : BIRD_OTHR_LN_ELDM_Table.BIRD_OTHR_LN_ELDMs)
+		 		 	{
+		 		 			var newItem = F_05_01_REF_OutputItem_LogicFactory.eINSTANCE.createLoans_and_advances
+		 		 			
+		 		 			val debtors = other_loan.other_loan_has_Debtor_s_via_Other_loan_Debtor_assignment_2wayassociation
+		 		 			for (debtor:debtors)
+		 		 			{
+		 		 				if (debtor.MN_DBTR_INDCTR==  MN_DBTR_INDCTR_domain.MAIN_DEBTOR)
+		 		 				{	 					 					 		 					
+		 		 					newItem.BIRD_PRTY_ELDM = debtor.linked_BIRD_LN_DBTR_ELDM.linked_BIRD_PRTY_ELDM
+		 		 				}
+		 		 				
+		 		 			}
+			 		 		
+			 		 		
+			 		 		// get the loans roles
+			 		 		val the_roles =  other_loan.parent_BIRD_INSTRMNT_ELDM.instrument_acts_in_Instrument_role_s__2wayassociation
+			 		 		// get the role that is for financial assets
+			 		 		
+			 		 		for (role:the_roles) {
+			 		 			
+			 		 			if (role instanceof BIRD_FNNCL_ASST_INSTRMNT_ELDM)
+			 		 			{
+			 		 				newItem.BIRD_FNNCL_ASST_INSTRMNT_ELDM = role
+			 		 				newItem.BIRD_FNNCL_ASST_INSTRMNT_DRVD_DT_ELDM = role.financial_asset_instrument_has_Financial_asset_instrument_derived_data_2wayassociation
+			 		 				val the_asset = (role as BIRD_FNNCL_ASST_INSTRMNT_ELDM).financial_asset_instrument_type_delegate
+			 		 				if (the_asset instanceof BIRD_BLNC_SHT_RCGNSD_FNNCNL_ASST_INSTRMNT_ELDM)
+			 		 				{
+			 		 					newItem.BIRD_BLNC_SHT_RCGNSD_FNNCNL_ASST_INSTRMNT_ELDM =  the_asset
+			 		 					
+			 		 				}
+			 		 			}
+			 		 	 	}
+			 		 		
+			 		 		items.add(newItem)
+		 		 		}
+		 		 	
+	 				return items
 				}
 			 	op String  init() 
 				{
