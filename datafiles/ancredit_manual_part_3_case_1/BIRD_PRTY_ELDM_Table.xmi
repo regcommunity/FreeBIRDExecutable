@@ -2,14 +2,17 @@
 <input_tables:BIRD_PRTY_ELDM_Table xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:input_tables="input_tables">
   <BIRD_PRTY_ELDMs PRTY_ID="78451209" PRTY_RFRNC_DT="2018-09-30T00:00:00.000+0100" PRTY_RPRTNG_AGNT_ID="BLZ10" PRTY_TYP="18" BIRD_PRTY_ELDM_uniqueID="78451209_2018-09-30_BLZ10">
     <Party_acts_in_Party_role_2wayassociation href="BIRD_LN_DBTR_ELDM_Table.xmi#78451209_2018-09-30_BLZ10"/>
+    <Party_has_Party_derived_data_2wayassociation href="BIRD_PRTY_DRVD_DT_ELDM_Table.xmi#78451209_2018-09-30_BLZ10"/>
     <Party_type_delegate xsi:type="input_tables:BIRD_ORGNSTN_ELDM" href="BIRD_ORGNSTN_ELDM_Table.xmi#78451209_2018-09-30_BLZ10"/>
   </BIRD_PRTY_ELDMs>
   <BIRD_PRTY_ELDMs PRTY_ID="BLZ10" PRTY_RFRNC_DT="2018-09-30T00:00:00.000+0100" PRTY_RPRTNG_AGNT_ID="BLZ10" PRTY_TYP="18" BIRD_PRTY_ELDM_uniqueID="BLZ10_2018-09-30_BLZ10">
     <Party_acts_in_Party_role_2wayassociation href="BIRD_CRDTR_ELDM_Table.xmi#BLZ10_2018-09-30_BLZ10"/>
+    <Party_has_Party_derived_data_2wayassociation href="BIRD_PRTY_DRVD_DT_ELDM_Table.xmi#BLZ10_2018-09-30_BLZ10"/>
     <Party_type_delegate xsi:type="input_tables:BIRD_ORGNSTN_ELDM" href="BIRD_ORGNSTN_ELDM_Table.xmi#BLZ10_2018-09-30_BLZ10"/>
   </BIRD_PRTY_ELDMs>
-  <BIRD_PRTY_ELDMs PRTY_ID="63829150" PRTY_RFRNC_DT="2018-09-30T00:00:00.000+0100" PRTY_RPRTNG_AGNT_ID="BLZ10" PRTY_TYP="18" PRTY_TYP_ADDRS="6" ECNMC_ACTVTY="22" BIRD_PRTY_ELDM_uniqueID="63829150_2018-09-30_BLZ10">
+  <BIRD_PRTY_ELDMs PRTY_ID="63829150" PRTY_RFRNC_DT="2018-09-30T00:00:00.000+0100" PRTY_RPRTNG_AGNT_ID="BLZ10" PRTY_TYP="18" PRTY_TYP_ADDRS="6" BIRD_PRTY_ELDM_uniqueID="63829150_2018-09-30_BLZ10">
     <Party_acts_in_Party_role_2wayassociation href="BIRD_PRTCTN_PRVDR_ELDM_Table.xmi#63829150_2018-09-30_BLZ10"/>
+    <Party_has_Party_derived_data_2wayassociation href="BIRD_PRTY_DRVD_DT_ELDM_Table.xmi#63829150_2018-09-30_BLZ10"/>
     <Party_type_delegate xsi:type="input_tables:BIRD_ORGNSTN_ELDM" href="BIRD_ORGNSTN_ELDM_Table.xmi#63829150_2018-09-30_BLZ10"/>
   </BIRD_PRTY_ELDMs>
 </input_tables:BIRD_PRTY_ELDM_Table>
