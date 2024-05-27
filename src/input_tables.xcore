@@ -7464,8 +7464,7 @@ class BIRD_FNNCL_ASST_INSTRMNT_DRVD_DT_ELDM {
 	@long_name ( long_name="Time_past_due_band")
  	TM_INTRVL_domain  TM_PST_DU_BND 
 
-	@long_name ( long_name="Gross_carrying_amount")
- 	int  GRSS_CRRYNG_AMNT 
+	
 
 	@key ( is_primary_key="true")
 	@long_name ( long_name="Financial_asset_instrument_Reporting_agent_identifier")
@@ -7510,7 +7509,137 @@ class BIRD_FNNCL_ASST_INSTRMNT_DRVD_DT_ELDM {
  	op ACCNTNG_FRMWRK_domain  ACCNTNG_FRMWRK()
 	{
 	}
-}
+	
+	@long_name ( long_name="Gross_carrying_amount")
+ 	op int  GRSS_CRRYNG_AMNT() 
+ 	{
+ 		var ACCNTNG_CLSSFCTN_domain accntng_clssfctn = null
+ 		var int accmltd_imprmnt = 0
+ 		var int accmltd_chngs_fv_cr = 0
+ 		var int crryng_amnt  = 0 
+ 		var int fv = 0
+ 		var int gnrl_allwncs_bnk_rsk = 0
+ 		var int gnrl_allwncs_crdt_rsk = 0
+ 		var CRDT_QLTY_domain prfrmng_stts = PRFRMNG_STTS
+ 		var CRDT_QLTY_domain imprmnt_stts = null
+ 		var SBJCT_IMPRMNT_INDCTR_domain  sbjct_imprmnt_idctr = null 
+ 		
+ 		if (linked_BIRD_FNNCL_ASST_INSTRMNT_ELDM !== null)
+ 		{
+	 		sbjct_imprmnt_idctr = linked_BIRD_FNNCL_ASST_INSTRMNT_ELDM.SBJCT_IMPRMNT_INDCTR
+	 		val financial_asset_type = linked_BIRD_FNNCL_ASST_INSTRMNT_ELDM.financial_asset_instrument_type_delegate
+	 		if (financial_asset_type instanceof BIRD_BLNC_SHT_RCGNSD_FNNCNL_ASST_INSTRMNT_ELDM)
+	 		{
+	 			accntng_clssfctn = financial_asset_type.ACCNTNG_CLSSFCTN
+	 			accmltd_imprmnt = financial_asset_type.ACCMLTD_IMPRMNT
+	 			crryng_amnt  = financial_asset_type.CRRYNG_AMNT
+	 			imprmnt_stts = financial_asset_type.IMPRMNT_STTS
+	 			
+	 			
+	 			val balance_sheet_recognised_financial_asset_instrument_by_fair_value_type = financial_asset_type.balance_sheet_recognised_financial_asset_instrument_by_fair_value_type_delegate
+	 			if (balance_sheet_recognised_financial_asset_instrument_by_fair_value_type !== null)
+	 			{
+	 				if (balance_sheet_recognised_financial_asset_instrument_by_fair_value_type instanceof BIRD_FR_VLD_BLNC_SHT_RCGNSD_FNNCL_ASST_INSTRMNT_ELDM)
+	 				{
+	 					accmltd_chngs_fv_cr = balance_sheet_recognised_financial_asset_instrument_by_fair_value_type.ACCMLTD_CHNGS_FV
+	 					fv = balance_sheet_recognised_financial_asset_instrument_by_fair_value_type.FV 
+	 					 					
+	 				}
+	 				
+	 			}
+	 			val balance_sheet_recognised_financial_asset_instrument_type = financial_asset_type.balance_sheet_recognised_financial_asset_instrument_type_delegate
+	 			if (balance_sheet_recognised_financial_asset_instrument_type !== null)
+	 			{
+	 				if (balance_sheet_recognised_financial_asset_instrument_type instanceof BIRD_BLNC_SHT_RCGNSD_FNNCNL_ASST_INSTRMNT_NGAAP_ELDM)
+	 				{
+	 					gnrl_allwncs_bnk_rsk = balance_sheet_recognised_financial_asset_instrument_type.GNRL_ALLWNCS_BNK_RSK
+	 					gnrl_allwncs_crdt_rsk = balance_sheet_recognised_financial_asset_instrument_type.GNRL_ALLWNCS_CRDT_RSK
+	 					
+	 					 					
+	 				}
+	 				
+	 			}
+	 		}
+	 		}
+	 
+	 	
+
+ 		var int return_grss_crryng_amnt = 0
+	 	return_grss_crryng_amnt = switch  accntng_clssfctn {
+	 		case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.IFRS_FINANCIAL_ASSETS_DESIGNATED_AT_FAIR_VALUE_THROUGH_PROFIT_OR_LOSS ||
+	 			accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.IFRS_NON_TRADING_FINANCIAL_ASSETS_MANDATORILY_AT_FAIR_VALUE_THROUGH_PROFIT_OR_LOSS ||
+	 			accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_FINANCIAL_ASSETS_DESIGNATED_AT_FAIR_VALUE_THROUGH_PROFIT_OR_LOSS ||
+	 			accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_MEASURED_AT_FAIR_VALUE_THROUGH_PROFIT_OR_LOSS ):
+	 			switch prfrmng_stts {
+	 				case prfrmng_stts == CRDT_QLTY_domain.PERFORMING:
+	 					fv
+	 				case prfrmng_stts == CRDT_QLTY_domain.NON_PERFORMING:
+	 					fv + accmltd_chngs_fv_cr
+	 				default : 0
+	 				
+	 				 
+	 			}
+	 		case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.IFRS_FINANCIAL_ASSETS_AT_AMORTISED_COST ||
+	 			accntng_clssfctn ==  ACCNTNG_CLSSFCTN_domain.IFRS_FINANCIAL_ASSETS_AT_FAIR_VALUE_THROUGH_OTHER_COMPREHENSIVE_INCOME ||
+	 			accntng_clssfctn ==  ACCNTNG_CLSSFCTN_domain.NGAAP_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_MEASURED_AT_FAIR_VALUE_TO_EQUITY
+	 		):
+	 			crryng_amnt - accmltd_imprmnt
+	 		case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_MEASURED_AT_ACOST_BASED_METHOD_LOCOM):
+		 		switch prfrmng_stts {
+		 				case prfrmng_stts == CRDT_QLTY_domain.SPECIFIC_ALLOWANCES_GAAP_:
+		 					crryng_amnt - accmltd_imprmnt
+	 					case prfrmng_stts == CRDT_QLTY_domain.GENERAL_ALLOWANCES_FOR_CREDIT_RISK:
+	 						crryng_amnt - gnrl_allwncs_crdt_rsk
+	 					case prfrmng_stts == CRDT_QLTY_domain.GENERAL_ALLOWANCES_FOR_BANKING_RISK:
+	 						crryng_amnt - gnrl_allwncs_bnk_rsk
+	 					default : 0
+	 					}
+	 			
+	 		case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_MEASURED_AT_FAIR_VALUE_TO_EQUITY):
+	 			switch sbjct_imprmnt_idctr {
+	 				case (sbjct_imprmnt_idctr == SBJCT_IMPRMNT_INDCTR_domain.SUBJECT_TO_IMPAIRMENT):
+	 					switch prfrmng_stts {
+			 				case prfrmng_stts == CRDT_QLTY_domain.SPECIFIC_ALLOWANCES_GAAP_:
+			 					crryng_amnt - accmltd_imprmnt
+		 					case prfrmng_stts == CRDT_QLTY_domain.GENERAL_ALLOWANCES_FOR_CREDIT_RISK:
+		 						crryng_amnt - gnrl_allwncs_crdt_rsk
+		 					case prfrmng_stts == CRDT_QLTY_domain.GENERAL_ALLOWANCES_FOR_BANKING_RISK:
+		 						crryng_amnt - gnrl_allwncs_bnk_rsk
+		 					default : 0
+	 					}
+	 				case (sbjct_imprmnt_idctr == SBJCT_IMPRMNT_INDCTR_domain.NOT_SUBJECT_TO_IMPAIRMENT):
+		 				switch prfrmng_stts {
+			 				case prfrmng_stts == CRDT_QLTY_domain.PERFORMING:
+			 					fv
+			 				case prfrmng_stts == CRDT_QLTY_domain.NON_PERFORMING:
+			 					fv + accmltd_chngs_fv_cr
+			 				default : 0
+			 				}
+			 		default : 0
+			 			}
+			 		
+			 case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_MEASURED_AT_ACOST_BASED_METHOD_LOCOM ||
+			 	accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_OTHER_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_LOCOM
+			 ):	
+			 	crryng_amnt
+			 case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_OTHER_NON_TRADING_NON_DERIVATIVE_FINANCIAL_ASSETS_OTHER_THAN_LOCOM ):		
+			 	crryng_amnt + accmltd_imprmnt
+			 case (accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.IFRS_FINANCIAL_ASSETS_HELD_FOR_TRADING ||
+			 	accntng_clssfctn == ACCNTNG_CLSSFCTN_domain.NGAAP_TRADING_FINANCIAL_ASSETS
+			 ):
+			 	fv
+			 default : 0		
+	 				
+	 			}
+	 			 
+	 		
+	 		
+	 			
+	 			}
+	 		
+	 	}
+	
+
 class BIRD_FNNCL_ASST_INSTRMNT_DRVD_DT_ELDM_Table {
 	contains  BIRD_FNNCL_ASST_INSTRMNT_DRVD_DT_ELDM [] BIRD_FNNCL_ASST_INSTRMNT_DRVD_DT_ELDMs 								
 } 
