@@ -1367,119 +1367,120 @@ class F_04_10_REF_OutputItem_Table {
 } 
 @long_name ( long_name="Breakdown_of_non_trading_loans_and_advances_by_product_Loans_and_advances_other_than_held_for_trading_trading_or_held_for_sale_assets_by_product_Reference")
 class F_05_01_REF_OutputItem {
-	refers F_05_01_REF_OutputItem_UnionItem  unionOfLayers 
+	refers F_05_01_REF_OutputItem_UnionItem  f_05_01_REF_OutputItem_UnionItem  
 
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.GRSS_CRRYNG_AMNT")
  	op int  GRSS_CRRYNG_AMNT()
 	{
-		unionOfLayers.GRSS_CRRYNG_AMNT()
+		f_05_01_REF_OutputItem_UnionItem .GRSS_CRRYNG_AMNT()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.CRRYNG_AMNT")
  	op int  CRRYNG_AMNT()
 	{
-		unionOfLayers.CRRYNG_AMNT()
+		f_05_01_REF_OutputItem_UnionItem .CRRYNG_AMNT()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.ACCNTNG_CLSSFCTN")
  	op ACCNTNG_CLSSFCTN_domain  ACCNTNG_CLSSFCTN()
 	{
-		unionOfLayers.ACCNTNG_CLSSFCTN()
+		f_05_01_REF_OutputItem_UnionItem .ACCNTNG_CLSSFCTN()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.TYP_ACCNTNG_ITM")
  	op TYP_ACCNTNG_ITM_domain  TYP_ACCNTNG_ITM()
 	{
-		unionOfLayers.TYP_ACCNTNG_ITM()
+		f_05_01_REF_OutputItem_UnionItem .TYP_ACCNTNG_ITM()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.HLD_SL_INDCTR")
  	op HLD_SL_INDCTR_domain  HLD_SL_INDCTR()
 	{
-		unionOfLayers.HLD_SL_INDCTR()
+		f_05_01_REF_OutputItem_UnionItem .HLD_SL_INDCTR()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.HLD_TRDNG_INDCTR")
  	op HLD_TRDNG_INDCTR_domain  HLD_TRDNG_INDCTR()
 	{
-		unionOfLayers.HLD_TRDNG_INDCTR()
+		f_05_01_REF_OutputItem_UnionItem .HLD_TRDNG_INDCTR()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.HLD_MTRTY_INDCTR")
  	op HLD_MTRTY_INDCTR_domain  HLD_MTRTY_INDCTR()
 	{
-		unionOfLayers.HLD_MTRTY_INDCTR()
+		f_05_01_REF_OutputItem_UnionItem .HLD_MTRTY_INDCTR()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.SBJCT_IMPRMNT_INDCTR")
  	op SBJCT_IMPRMNT_INDCTR_domain  SBJCT_IMPRMNT_INDCTR()
 	{
-		unionOfLayers.SBJCT_IMPRMNT_INDCTR()
+		f_05_01_REF_OutputItem_UnionItem .SBJCT_IMPRMNT_INDCTR()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.ACCNTNG_PRTFL_VLTN_RL")
  	op VLTN_RL_domain  ACCNTNG_PRTFL_VLTN_RL()
 	{
-		unionOfLayers.ACCNTNG_PRTFL_VLTN_RL()
+		f_05_01_REF_OutputItem_UnionItem .ACCNTNG_PRTFL_VLTN_RL()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.ACCNTNG_FRMWRK")
  	op ACCNTNG_FRMWRK_domain  ACCNTNG_FRMWRK()
 	{
-		unionOfLayers.ACCNTNG_FRMWRK()
+		f_05_01_REF_OutputItem_UnionItem .ACCNTNG_FRMWRK()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.INSTTTNL_SCTR")
  	op INSTTTNL_SCTR_domain  INSTTTNL_SCTR()
 	{
-		unionOfLayers.INSTTTNL_SCTR()
+		f_05_01_REF_OutputItem_UnionItem .INSTTTNL_SCTR()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.SUBA_CD")
  	op String  SUBA_CD()
 	{
-		unionOfLayers.SUBA_CD()
+		f_05_01_REF_OutputItem_UnionItem .SUBA_CD()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.")
  	op TYP_INSTRMNT_domain  TYP_INSTRMNT()
 	{
-		unionOfLayers.TYP_INSTRMNT()
+		f_05_01_REF_OutputItem_UnionItem .TYP_INSTRMNT()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.TYP_INSTRMNT")
  	op RPYMNT_RGHTS_domain  RPYMNT_RGHTS()
 	{
-		unionOfLayers.RPYMNT_RGHTS()
+		f_05_01_REF_OutputItem_UnionItem .RPYMNT_RGHTS()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.PRJCT_FNNC_LN")
  	op PRJCT_FNNC_LN_domain  PRJCT_FNNC_LN()
 	{
-		unionOfLayers.PRJCT_FNNC_LN()
+		f_05_01_REF_OutputItem_UnionItem .PRJCT_FNNC_LN()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.TYP_CLLTRL_GRNT_RCVD")
  	op TYP_PRTCTN_domain  TYP_CLLTRL_GRNT_RCVD()
 	{
-		unionOfLayers.TYP_CLLTRL_GRNT_RCVD()
+		f_05_01_REF_OutputItem_UnionItem .TYP_CLLTRL_GRNT_RCVD()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.DT_RFRNC")
  	op Date  DT_RFRNC()
 	{
-		unionOfLayers.DT_RFRNC()
+		f_05_01_REF_OutputItem_UnionItem .DT_RFRNC()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.PRPS")
  	op PRPS_domain  PRPS()
 	{
-		unionOfLayers.PRPS()
+		f_05_01_REF_OutputItem_UnionItem .PRPS()
 	}
 
-
+	@dep (dep1="F_05_01_REF_OutputItem_UnionItem.ENTTY_RIAD_CD_RPRTNG_AGNT")
  	op String  ENTTY_RIAD_CD_RPRTNG_AGNT()
 	{
-		unionOfLayers.ENTTY_RIAD_CD_RPRTNG_AGNT()
+		f_05_01_REF_OutputItem_UnionItem .ENTTY_RIAD_CD_RPRTNG_AGNT()
 	}
 
 }
@@ -1491,7 +1492,7 @@ class F_05_01_REF_OutputItem_Table {
 				for( F_05_01_REF_OutputItem_UnionItem item : unionOfLayersTable.f_05_01_REF_OutputItem_UnionItems)
 				{
 					var newItem = Output_tablesFactory.eINSTANCE.createF_05_01_REF_OutputItem
-					newItem.unionOfLayers =  item
+					newItem.f_05_01_REF_OutputItem_UnionItem  =  item
 					items.add(newItem)
 }
 				return items
