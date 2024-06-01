@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input_tables:BIRD_PRTY_RSK_DT_ELDM_Table
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:input_tables="input_tables">
+  <BIRD_PRTY_RSK_DT_ELDMs
+      PRTY_ID="78451209"
+      DT_RFRNC="2018-09-30T00:00:00.000+0100"
+      DFLT_STTS="11"
+      RPRTNG_AGNT_ID="BLZ10"
+      PRFRMNG_STTS="11"
+      DT_DFLT_STTS="2018-09-30T00:00:00.000+0100"
+      BIRD_PRTY_RSK_DT_ELDM_uniqueID="78451209_2018-09-30_BLZ10"/>
+  <BIRD_PRTY_RSK_DT_ELDMs
+      PRTY_ID="BLZ10"
+      DT_RFRNC="2018-09-30T00:00:00.000+0100"
+      DFLT_STTS="11"
+      RPRTNG_AGNT_ID="BLZ10"
+      PRFRMNG_STTS="11"
+      DT_DFLT_STTS="2018-09-30T00:00:00.000+0100"
+      BIRD_PRTY_RSK_DT_ELDM_uniqueID="BLZ10_2018-09-30_BLZ10">
+    <linked_BIRD_PRTY_ELDM
+        href="BIRD_PRTY_ELDM_Table.xmi#BLZ10_2018-09-30_BLZ10"/>
+  </BIRD_PRTY_RSK_DT_ELDMs>
+  <BIRD_PRTY_RSK_DT_ELDMs
+      PRTY_ID="63829150"
+      DT_RFRNC="2018-09-30T00:00:00.000+0100"
+      DFLT_STTS="11"
+      RPRTNG_AGNT_ID="BLZ10"
+      PRFRMNG_STTS="11"
+      DT_DFLT_STTS="2018-09-30T00:00:00.000+0100"
+      BIRD_PRTY_RSK_DT_ELDM_uniqueID="63829150_2018-09-30_BLZ10">
+    <linked_BIRD_PRTY_ELDM
+        href="BIRD_PRTY_ELDM_Table.xmi#63829150_2018-09-30_BLZ10"/>
+  </BIRD_PRTY_RSK_DT_ELDMs>
+</input_tables:BIRD_PRTY_RSK_DT_ELDM_Table>
